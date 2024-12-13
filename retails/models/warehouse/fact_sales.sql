@@ -1,12 +1,3 @@
-{{
-    config(
-        partition_by = {
-            "field" : "order_date",
-            "data_type" : "date"
-        }
-    )
-}}
-
 
 with source as(
     select 
@@ -29,7 +20,6 @@ current_timestamp() as insertion_timestamp
 from  {{ref('stg_orders')}}  o
 left join  {{ref('stg_order_details')}}  od 
 ON o.id = od.order_id
-
 ),
 unique_source as (
     select *,
@@ -46,8 +36,8 @@ unique_source as (
     from source
 )
 
-select * 
+select *
 except
     (row_number)
 from unique_source
-where row_number = 1 
+where (row_number) = 1

@@ -1,12 +1,3 @@
-{{
-    config(
-        partition_by = {
-            "field" : "creation_date",
-            "data_type" : "date"
-        }
-    )
-}}
-
 
 with source as (
     select
@@ -72,18 +63,12 @@ unique_source as (
         AND 
         product_id is not null
         AND 
-        supplier_id is not null
-    
-        AND 
-        purchase_order_id is not null
-        AND 
         inventory_id is not null
         AND 
         creation_date is not null
     )
 
-select * 
-except
-    (row_number)
+select *
+except (row_number)
 from unique_source
-where row_number = 1
+where (row_number) = 1
