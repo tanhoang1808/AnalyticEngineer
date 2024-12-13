@@ -1,12 +1,3 @@
-{{
-    config(
-        partition_by = {
-            "field" : "order_date",
-            "data_type" : "date"
-        }
-    )
-}}
-
 
 with source as(
     select 
@@ -51,4 +42,4 @@ select *
 except
     (row_number)
 from unique_source
-where row_number = 1 
+where (row_number) = 1 
