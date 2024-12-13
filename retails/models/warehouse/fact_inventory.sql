@@ -1,8 +1,18 @@
+{{
+    config(
+        partition_by = {
+            "field" : "transaction_created_date",
+            "data_type" : "date"
+        }
+    )
+}}
+
+
 with source as (
     select 
     id as inventory_id,
     transaction_type,
-    transaction_created_date,
+    date(transaction_created_date) as transaction_created_date,
     transaction_modified_date,
     product_id,
     quantity,

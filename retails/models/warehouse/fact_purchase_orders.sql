@@ -1,3 +1,13 @@
+{{
+    config(
+        partition_by = {
+            "field" : "creation_date",
+            "data_type" : "date"
+        }
+    )
+}}
+
+
 with source as (
     select
     c.id as customer_id,
@@ -12,7 +22,7 @@ with source as (
     po.supplier_id,
     po.created_by,
     po.submitted_date,
-    po.creation_date,
+    date(po.creation_date) as creation_date,
     po.status_id,
     po.expected_date,
     po.shipping_fee,
