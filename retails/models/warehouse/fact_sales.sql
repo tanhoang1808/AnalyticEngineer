@@ -29,7 +29,6 @@ current_timestamp() as insertion_timestamp
 from  {{ref('stg_orders')}}  o
 left join  {{ref('stg_order_details')}}  od 
 ON o.id = od.order_id
-where od.order_id is not null
 
 ),
 unique_source as (
