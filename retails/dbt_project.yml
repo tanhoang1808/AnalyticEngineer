@@ -42,5 +42,10 @@ models:
       +schema : dwh_warehouse
       dim_date:
         +materialized: view
+    obt:
+      +enabled: true
+      +materialized: table
+      +schema : obt
+
 
       
